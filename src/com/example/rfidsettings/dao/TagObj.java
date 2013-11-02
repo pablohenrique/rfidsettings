@@ -40,27 +40,27 @@ public class TagObj {
         return this._id;
     }
      
-    public boolean getthreeG(){
+    public boolean get3g(){
         return this._3g;
     }
      
-    public boolean getbT(){
+    public boolean getBluetooth(){
         return this._bluetooth;
     }
     
-    public boolean getwiFi(){
+    public boolean getWifi(){
         return this._wifi;
     }
     
-    public boolean getvolume(){
+    public boolean getVolume(){
         return this._volume;
     }
     
-    public boolean getvibrate(){
+    public boolean getVibrate(){
         return this._vibrate;
     }
     
-    public String getname(){
+    public String getName(){
         return this._name;
     }
     
@@ -68,27 +68,27 @@ public class TagObj {
 		this._id = id;
 	}
 	
-	public void setthreeG(int threeG) {
+	public void set3g(int threeG) {
 		this._3g = (threeG == 1);
 	}
 	
-	public void setvolume(boolean volume) {
+	public void setVolume(boolean volume) {
 		this._volume = volume;
 	}
 	
-	public void setwiFi(int bT) {
+	public void setWifi(int bT) {
 		this._bluetooth = (bT == 1);
 	}
 	
-	public void setvibrate(int vibrate) {
+	public void setVibrate(int vibrate) {
 		this._vibrate = (vibrate == 1);		
 	}
 	
-	public void setbT(int bT) {
+	public void setBluetooth(int bT) {
 		this._bluetooth = (bT == 1);
 	}
 	
-	public void setbT(String bT) {
+	public void setBluetooth(String bT) {
 		this._name = bT;
 	}
 }
