@@ -28,9 +28,9 @@ public class RFIDSettings {
 		wifimgmt.saveConfiguration();
 	}
 	
-	public static void changeWifi(Context context, boolean toggle){
+	public static void changeWifi(Context context, boolean enabled){
 		wifimgmt = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-		if(toggle)
+		if(enabled)
 			wifimgmt.setWifiEnabled(true);
 		else
 			wifimgmt.setWifiEnabled(false);

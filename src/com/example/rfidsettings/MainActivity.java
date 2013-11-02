@@ -60,8 +60,35 @@ public class MainActivity extends Activity {
 	    for(int i = 0; i < tag.getId().length; i++){
 	    	sb.append(Integer.valueOf(tag.getId()[i]));
 	    }
-	    System.out.println(sb);
+	    //System.out.println(sb);
 	    MyDB mdb = new MyDB(this);
+/*
+	    mdb.deleteRecords("-45-5615-79");
+	    mdb.deleteRecords("-9370-47-100");
+	    mdb.deleteRecords("-92-128850");
+	    mdb.deleteRecords("-10761850");
+*/
+
+	    mdb.deleteAll();
+	    
+///*
+	    //mdb.createRecords("-45-5615-79", "CardA", 1, 1, 1, 1, 1);
+	    //mdb.createRecords("-45-5615-79", "CardA", true, true, true, true, false);
+	    //mdb.createRecords("-9370-47-100", "CardB", true, true, true, true, false);
+	    //mdb.createRecords("-92-128850", "StickerA", true, true, true, true, false);
+	    //mdb.createRecords("-10761850", "StickerB", true, true, true, true, false);
+//*/
+	    mdb.createRecords("-10761850", "StickerB", 1, 1, 1, 1, 1);
+	    mdb.ActivateChanges("-10761850");
+	    
+//	    TagObj aux = mdb.Get("-45-5615-79");
+//	    System.out.println(aux.getName());
+//	    aux = mdb.Get("-9370-47-100");
+//	    System.out.println(aux.getName());
+//	    aux = mdb.Get("-92-128850");
+//	    System.out.println(aux.getName());
+//	    aux = mdb.Get("-10761850");
+//	    System.out.println(aux.getName());
 	}
 
     /**

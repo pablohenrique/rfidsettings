@@ -16,6 +16,15 @@ public class TagObj {
     public TagObj(){
          
     }
+    
+	private boolean ConverIntegerBoolean(Integer i){
+		return (i == 1) ? true : false;
+	}
+	
+	private Integer ConverBooleanInteger(boolean b){
+		return (b) ? 1 : 0;
+	}
+    
     // constructor
     public TagObj(int id, boolean threeG, boolean bT, boolean wiFi, boolean volume, boolean vibrate, String name){
         this._id = id;
@@ -41,25 +50,53 @@ public class TagObj {
         return this._id;
     }
      
-    public boolean get3g(){
+    public Integer get3g(){
+        return this.ConverBooleanInteger(this._3g);
+    }
+     
+    public Integer getBluetooth(){
+        return this.ConverBooleanInteger(this._bluetooth);
+    }
+    
+    public Integer getWifi(){
+        return this.ConverBooleanInteger(this._wifi);
+    }
+    
+    public Integer getVolume(){
+        return this.ConverBooleanInteger(this._volume);
+    }
+    
+    public Integer getVibrate(){
+        return this.ConverBooleanInteger(this._vibrate);
+    }
+    
+    /*
+     * 
+     */
+    
+    public boolean getB3g(){
         return this._3g;
     }
      
-    public boolean getBluetooth(){
+    public boolean getBBluetooth(){
         return this._bluetooth;
     }
     
-    public boolean getWifi(){
+    public boolean getBWifi(){
         return this._wifi;
     }
     
-    public boolean getVolume(){
+    public boolean getBVolume(){
         return this._volume;
     }
     
-    public boolean getVibrate(){
+    public boolean getBVibrate(){
         return this._vibrate;
     }
+    
+    /*
+     * 
+     */
     
     public String getName(){
         return this._name;
@@ -74,23 +111,23 @@ public class TagObj {
 	}
 	
 	public void set3g(int threeG) {
-		this._3g = (threeG == 1);
+		this._3g = this.ConverIntegerBoolean(threeG);
 	}
 	
 	public void setVolume(int volume) {
-		this._volume = (volume == 1);
+		this._volume = this.ConverIntegerBoolean(volume);
 	}
 	
 	public void setWifi(int bT) {
-		this._bluetooth = (bT == 1);
+		this._bluetooth = this.ConverIntegerBoolean(bT);
 	}
 	
 	public void setVibrate(int vibrate) {
-		this._vibrate = (vibrate == 1);		
+		this._vibrate = this.ConverIntegerBoolean(vibrate);		
 	}
 	
 	public void setBluetooth(int bT) {
-		this._bluetooth = (bT == 1);
+		this._bluetooth = this.ConverIntegerBoolean(bT);
 	}
 	
 	public void setName(String name) {
