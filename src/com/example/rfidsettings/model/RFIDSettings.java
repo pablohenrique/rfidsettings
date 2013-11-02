@@ -44,8 +44,6 @@ public class RFIDSettings {
 			audiomgmt.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
 		else
 			audiomgmt.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-		Toast toast = Toast.makeText(context, "foi!", Toast.LENGTH_SHORT);
-		toast.show();
 	}
 	
 	public static void changeVibrate(Context context, boolean enabled){
@@ -54,8 +52,6 @@ public class RFIDSettings {
 			audiomgmt.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
 		else
 			audiomgmt.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-		Toast toast = Toast.makeText(context, "foi!", Toast.LENGTH_SHORT);
-		toast.show();
 	}
 	
 	public static void changeBluetooth(Context context, boolean enabled){
@@ -64,7 +60,5 @@ public class RFIDSettings {
 			bluetoothmgmt.enable();
 		else
 			bluetoothmgmt.disable();
-		Toast toast = Toast.makeText(context, "bluetooth foi!", Toast.LENGTH_SHORT);
-		toast.show();
 	}
 }

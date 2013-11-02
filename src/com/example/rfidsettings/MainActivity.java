@@ -1,18 +1,16 @@
 package com.example.rfidsettings;
 
-import java.io.File;
-
 import com.example.rfidsettings.control.MyDB;
 import com.example.rfidsettings.dao.Connect;
-import com.example.rfidsettings.dao.MyDatabaseHelper;
-import com.example.rfidsettings.dao.TagObj;
-import com.example.rfidsettings.model.RFIDSettings;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +18,9 @@ public class MainActivity extends Activity {
 	static String TAG = "NFCREADER";
 	NFCForegroundUtil nfcForegroundUtil = null;
 	private TextView info;
+	private static StringBuilder sb;
+	private static MyDB mdb;
+	private static int counter = 0;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -52,50 +53,54 @@ public class MainActivity extends Activity {
 	    }
 
 	}
-
+	/*	
 	public void onNewIntent(Intent intent) {
 		Connect.getInstance(this);
 	    Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-	    StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < tag.getId().length; i++){
+	    	globalVar.getStringBuilder().append(Integer.valueOf(tag.getId()[i]));
+	    }
+		System.out.println(globalVar.getStringBuilder());
+	}
+	*/
+	public void onNewIntent(Intent intent) {
+		Connect.getInstance(this);
+	    Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+	    sb = new StringBuilder();
 	    for(int i = 0; i < tag.getId().length; i++){
 	    	sb.append(Integer.valueOf(tag.getId()[i]));
 	    }
 	    System.out.println(sb);
-	    MyDB mdb = new MyDB(this);
-/*
-	    mdb.deleteRecords("-45-5615-79");
-	    mdb.deleteRecords("-9370-47-100");
-	    mdb.deleteRecords("-92-128850");
-	    mdb.deleteRecords("-10761850");
-*/
-
-	    mdb.deleteAll();
+	    mdb = new MyDB(this);
+    	mdb.deleteAll();
+    	///                 						     3  B  W  V  T /
+    	mdb.createRecords("-45-5615-79", "CardA", 0, 1, 1, 1, 0);
+    	//mdb.createRecords("-9370-47-100", "CardB", 0, 1, 1, 0, 1);
+    	mdb.createRecords("-92-128850", "StickerA", 0, 1, 0, 1, 0);
+    	mdb.createRecords("-10761850", "StickerB", 0, 0, 1, 0, 1);
+    	System.out.println("OK");
 	    
-///*
-	    //mdb.createRecords("-45-5615-79", "CardA", 1, 1, 1, 1, 1);
-	    //mdb.createRecords("-45-5615-79", "CardA", true, true, true, true, false);
-	    //mdb.createRecords("-9370-47-100", "CardB", true, true, true, true, false);
-	    //mdb.createRecords("-92-128850", "StickerA", true, true, true, true, false);
-	    //mdb.createRecords("-10761850", "StickerB", true, true, true, true, false);
-	    /* 0 TRUE; 1 FALSE; */
-//*/          									   3  B  W  V  T
-	    mdb.createRecords("-45-5615-79", "CardA", 0, 1, 1, 1, 0);
-	    mdb.createRecords("-9370-47-100", "CardB", 0, 0, 0, 0, 1);
-	    mdb.createRecords("-92-128850", "StickerA", 0, 1, 0, 1, 0);
-	    mdb.createRecords("-10761850", "StickerB", 0, 0, 1, 0, 1);
-	    
-	    mdb.ActivateChanges(sb.toString());
-	    
-	    
-//	    TagObj aux = mdb.Get("-45-5615-79");
-//	    System.out.println(aux.getName());
-//	    aux = mdb.Get("-9370-47-100");
-//	    System.out.println(aux.getName());
-//	    aux = mdb.Get("-92-128850");
-//	    System.out.println(aux.getName());
-//	    aux = mdb.Get("-10761850");
-//	    System.out.println(aux.getName());
+	    if(!mdb.RunRFID(sb.toString())){
+	    	setContentView(R.layout.addtag);
+	    }
 	}
+	
+	public void btnGravarClicked(View view){
+		System.out.println("Antes: " + sb.toString());
+		
+		EditText txtName = (EditText) findViewById(R.id.txtName);
+		CheckBox chkWifi = (CheckBox) findViewById(R.id.chkWifi);
+		CheckBox chkBlueTooth = (CheckBox) findViewById(R.id.chkBlueTooth);
+		CheckBox chkVolume = (CheckBox) findViewById(R.id.chkVolume);
+		CheckBox chkVibration = (CheckBox) findViewById(R.id.chkVib);
+		
+		System.out.println(sb.toString());
+		
+		mdb.createRecords(sb.toString(), txtName.getText().toString(), false, chkBlueTooth.isChecked(), chkWifi.isChecked(), chkVolume.isChecked(), chkVibration.isChecked());
+		
+		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_main);
+    }
 
     /**
      *  Convenience method to convert a byte array to a hex string.

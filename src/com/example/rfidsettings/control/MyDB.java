@@ -40,24 +40,18 @@ public class MyDB{
 		//database.execSQL("CREATE TABLE IF NOT EXISTS " + EMP_TABLE + " (TagID VARCHAR(50) PRIMARY KEY, Name VARCHAR(50), ThreeG Boolean, BT Boolean, Wifi Boolean, Volume Boolean, Vibrate Boolean)");
 		database.execSQL("CREATE TABLE IF NOT EXISTS " + EMP_TABLE + " (TagID VARCHAR(50) PRIMARY KEY, Name VARCHAR(50), ThreeG Integer, BT Integer, Wifi Integer, Volume Integer, Vibrate Integer)");
 	}
-
+	
+	private Integer BooleanInteger(boolean b){
+		return (b) ? 0 : 1;
+	}
 
 	public void createRecords(String tagid, String name, Integer tg, Integer bt, Integer wifi, Integer volume, Integer vibrate){
-		/*
-		ContentValues values = new ContentValues();
-		values.put(EMP_TAGID,tagid);
-		values.put(EMP_3G, tg);
-		values.put(EMP_BT, bt);
-		values.put(EMP_WIFI, wifi);
-		values.put(EMP_VOLUME, volume);
-		values.put(EMP_VIBRATE,vibrate);
-		
-		return database.insert(EMP_TABLE, null, values);
-		*/
 		database.execSQL("INSERT INTO " + EMP_TABLE + " ("+ EMP_TAGID + "," + EMP_NAME + "," + EMP_3G + "," + EMP_BT + "," +  EMP_WIFI + "," +  EMP_VOLUME + "," +  EMP_VIBRATE + ") VALUES('" + tagid + "','" + name + "'," + tg + "," + bt + "," + wifi + "," + volume + "," + vibrate + ")" );
-		//database.execSQL("INSERT INTO " + EMP_TABLE + " ("+ EMP_TAGID + "," + EMP_NAME + "," + EMP_3G + "," + EMP_BT + "," +  EMP_WIFI + "," +  EMP_VOLUME + "," +  EMP_VIBRATE + ") VALUES('" + tagid + "','" + name + "'," + tg + "," + bt + "," + wifi + "," + volume + "," + vibrate + ")" );
-		//database.execSQL("INSERT INTO " + EMP_TABLE + " VALUES('" + tagid + "','" + name + "'," + tg + "," + bt + "," + wifi + "," + volume + "," + vibrate + ")" );
-	}    
+	}
+	
+	public void createRecords(String tagid, String name, boolean tg, boolean bt, boolean wifi, boolean volume, boolean vibrate){
+		database.execSQL("INSERT INTO " + EMP_TABLE + " ("+ EMP_TAGID + "," + EMP_NAME + "," + EMP_3G + "," + EMP_BT + "," +  EMP_WIFI + "," +  EMP_VOLUME + "," +  EMP_VIBRATE + ") VALUES('" + tagid + "','" + name + "'," + this.BooleanInteger(tg) + "," + this.BooleanInteger(bt) + "," + this.BooleanInteger(wifi) + "," + this.BooleanInteger(volume) + "," + this.BooleanInteger(vibrate) + ")" );
+	}
 
 	public TagObj selectRecords() {
 		String[] cols = new String[] {EMP_TAGID, EMP_NAME, EMP_3G, EMP_BT, EMP_WIFI, EMP_VOLUME, EMP_VIBRATE};  
@@ -78,22 +72,26 @@ public class MyDB{
 	}
 	
 	public TagObj Get(String tagid){
-		TagObj tag = new TagObj();
-		String sql = "SELECT * FROM " + EMP_TABLE + " WHERE " + EMP_TAGID + " = '" + tagid + "';";
-		Cursor mCursor = database.rawQuery(sql, null);
-		mCursor.moveToFirst();
-		///*
-		tag.setTagID(mCursor.getString(0));
-		tag.setName(mCursor.getString(1));
-		tag.set3g(mCursor.getInt(2));
-		tag.setBluetooth(mCursor.getInt(3));
-		tag.setWifi(mCursor.getInt(4));
-		tag.setVolume(mCursor.getInt(5));
-		tag.setVibrate(mCursor.getInt(6));
-		
-        //mCursor.close();
-        return tag;
-		//return new TagObj(mCursor.getString(0),mCursor.getString(1),mCursor.getInt(2),mCursor.getInt(3),mCursor.getInt(4),mCursor.getInt(5),mCursor.getInt(6));
+		try{
+			TagObj tag = new TagObj();
+			String sql = "SELECT * FROM " + EMP_TABLE + " WHERE " + EMP_TAGID + " = '" + tagid + "';";
+			Cursor mCursor = database.rawQuery(sql, null);
+			mCursor.moveToFirst();
+			///*
+			tag.setTagID(mCursor.getString(0));
+			tag.setName(mCursor.getString(1));
+			tag.set3g(mCursor.getInt(2));
+			tag.setBluetooth(mCursor.getInt(3));
+			tag.setWifi(mCursor.getInt(4));
+			tag.setVolume(mCursor.getInt(5));
+			tag.setVibrate(mCursor.getInt(6));
+			
+	        //mCursor.close();
+	        return tag;
+			//return new TagObj(mCursor.getString(0),mCursor.getString(1),mCursor.getInt(2),mCursor.getInt(3),mCursor.getInt(4),mCursor.getInt(5),mCursor.getInt(6));
+		} catch(Exception except){
+			return null;
+		}
 	}
 	
 	public void deleteRecords(String TagID){
@@ -105,15 +103,22 @@ public class MyDB{
 		database.execSQL("DELETE FROM " + EMP_TABLE + ";");
 	}
 	
-	public void ActivateChanges(String TagID){
-		TagObj tag = new TagObj();
-		tag = this.Get(TagID);
+	public void ActivateChanges(TagObj tag){
 		RFIDSettings.changeWifi(this.context, tag.getBWifi());
 		RFIDSettings.changeBluetooth(this.context, tag.getBBluetooth());
 		if(tag.getBVibrate() == true)
 			RFIDSettings.changeVibrate(this.context, tag.getBVibrate());
 		else
 			RFIDSettings.changeVolume(this.context, tag.getBVolume());
+	}
+	
+	public boolean RunRFID(String TagID){
+		TagObj tag = this.Get(TagID);
+		if(tag == null)
+			return false;
+		else
+			this.ActivateChanges(tag);
+		return true;
 	}
 
 }
