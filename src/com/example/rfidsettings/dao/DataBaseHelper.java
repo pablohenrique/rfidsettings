@@ -23,7 +23,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 	//The Android's default system path of your application database.
 	@SuppressLint("SdCardPath")
-	private static String DB_PATH = "/data/data/com.example.rfidsettings/databases/";
+	private static String DB_PATH = "";//"/data/data/com.example.rfidsettings/databases/";
 
 	private static String DB_NAME = "Tags";
 
@@ -39,6 +39,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	public DataBaseHelper(Context context) {
 		super(context, DB_NAME, null, 1);
 		this.myContext = context;
+		DB_PATH = this.myContext.getFilesDir().getPath() + "/data/data/com.example.rfidsettings/databases";
+		
+		try {
+			this.createDataBase();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//DataBaseHelper.DB_PATH = myContext.getFilesDir().getPath() + "data/com.herokuapp.climbingtracker/databases/";
 	}	
 
@@ -167,11 +175,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		if (cursor.moveToFirst()) {
 			cursor.moveToFirst();
 			tag.setID(Integer.parseInt(cursor.getString(0)));
-			tag.set3g(Integer.parseInt(cursor.getString(1)));
-			tag.setBluetooth(Integer.parseInt(cursor.getString(2)));
-			tag.setWifi(Integer.parseInt(cursor.getString(3)));
-			tag.setVolume(Integer.parseInt(cursor.getString(4)));
-			tag.setVibrate(Integer.parseInt(cursor.getString(5)));
+			tag.setName(cursor.getString(1));
+			tag.set3g(Integer.parseInt(cursor.getString(2)));
+			tag.setBluetooth(Integer.parseInt(cursor.getString(3)));
+			tag.setWifi(Integer.parseInt(cursor.getString(4)));
+			tag.setVolume(Integer.parseInt(cursor.getString(5)));
+			tag.setVibrate(Integer.parseInt(cursor.getString(6)));
+			tag.setTagID(cursor.getString(7));
 			cursor.close();
 		} else {
 			tag = null;
@@ -225,7 +235,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		String Wifi = wifi?"1":"0";
 		String Vibration = vibration?"1":"0";
 		String Volume = Integer.toString(volume);
-		String query = "INSERT INTO "+TABLE_TAGS+" (ThreeG, bT, Wifi, Volume, Vibrate, TagId) "+" VALUES "+"("+ThreeG+","+BT+","+Wifi+","+Volume+","+Vibration+") " + "\"";
+		String query = "INSERT INTO "+TABLE_TAGS+" (ThreeG, BT, Wifi, Volume, Vibrate, TagId) "+" VALUES "+"("+ThreeG+","+BT+","+Wifi+","+Volume+","+Vibration+") " + "\"";
 
 		openDataBase();
 		

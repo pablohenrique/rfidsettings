@@ -58,6 +58,7 @@ public class MainActivity extends Activity {
 	    }
 	    System.out.println(sb);
 	    DBControl dbc = new DBControl(this);
+	    dbc.Get(sb.toString());
 	}
 
     /**

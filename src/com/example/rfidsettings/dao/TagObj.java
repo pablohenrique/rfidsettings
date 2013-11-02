@@ -10,6 +10,7 @@ public class TagObj {
     boolean _volume;
     boolean _vibrate;
     String _name;
+    String _tagid;
      
     // Empty constructor
     public TagObj(){
@@ -64,6 +65,10 @@ public class TagObj {
         return this._name;
     }
     
+    public String getTagID(){
+        return this._tagid;
+    }
+    
 	public void setID(int id) {
 		this._id = id;
 	}
@@ -88,7 +93,11 @@ public class TagObj {
 		this._bluetooth = (bT == 1);
 	}
 	
-	public void setBluetooth(String bT) {
-		this._name = bT;
+	public void setName(String name) {
+		this._name = name;
+	}
+	
+	public void setTagID(String tagid) {
+		this._tagid = tagid;
 	}
 }
