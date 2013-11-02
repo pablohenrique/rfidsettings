@@ -26,11 +26,13 @@ public class MainActivity extends Activity {
 	}
 
 	public void onPause() {
+		Connect.getInstance(this);
 	    super.onPause();
 	    nfcForegroundUtil.disableForeground();
 	}   
 
 	public void onResume() {
+		Connect.getInstance(this);
 	    super.onResume();
 	    nfcForegroundUtil.enableForeground();
 
@@ -46,18 +48,13 @@ public class MainActivity extends Activity {
 	}
 
 	public void onNewIntent(Intent intent) {
+		Connect.getInstance(this);
 	    Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
 	    StringBuilder sb = new StringBuilder();
 	    for(int i = 0; i < tag.getId().length; i++){
-	    	sb.append(Integer.valueOf(tag.getId()[i]) + " ");
+	    	sb.append(Integer.valueOf(tag.getId()[i]));
 	    }
 	    System.out.println(sb);
-	    
-	    
-	    
-	    //info.setText("TagID: " + sb);
-	    //info.setText("TagID: " + bytesToHex(tag.getId()));    
-
 	}
 
     /**
