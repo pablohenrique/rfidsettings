@@ -1,5 +1,7 @@
 package com.example.rfidsettings;
 
+import com.example.rfidsettings.dao.Connect;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.nfc.NfcAdapter;
@@ -7,16 +9,15 @@ import android.nfc.Tag;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.app.Activity;
-import android.view.Menu;
 
 public class MainActivity extends Activity {
 	static String TAG = "NFCREADER";
 	NFCForegroundUtil nfcForegroundUtil = null;
 	private TextView info;
-
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		Connect.getInstance(this);
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_main);
 	    info = (TextView)findViewById(R.id.action_settings);
@@ -51,6 +52,9 @@ public class MainActivity extends Activity {
 	    	sb.append(Integer.valueOf(tag.getId()[i]) + " ");
 	    }
 	    System.out.println(sb);
+	    
+	    
+	    
 	    //info.setText("TagID: " + sb);
 	    //info.setText("TagID: " + bytesToHex(tag.getId()));    
 
@@ -97,6 +101,5 @@ public class MainActivity extends Activity {
         } else {
             return (char) ('a' + (i - 10));
         }
-    }    
-
+    }
 }

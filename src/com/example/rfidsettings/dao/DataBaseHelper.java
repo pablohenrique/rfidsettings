@@ -1,10 +1,11 @@
-package com.example.rfidsettings;
+package com.example.rfidsettings.dao;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -18,7 +19,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 	private static final String TABLE_TAGS = "Tags";
 
-	private static final String COLUMN_NAME = "Name";
+	private static final String COLUMN_TAGID = "TagID";
 
 	//The Android's default system path of your application database.
 	@SuppressLint("SdCardPath")
@@ -154,14 +155,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 	}
 
-	public Tag findTag(String grau) {
-		String query = "Select * FROM " + TABLE_TAGS + " WHERE " + COLUMN_NAME + " =  \"" + grau + "\"";
+	public TagObj findTag(String tagID) {
+		String query = "Select * FROM " + TABLE_TAGS + " WHERE " + COLUMN_TAGID + " =  \"" + tagID + "\"";
 
 		openDataBase();
 
 		Cursor cursor = myDataBase.rawQuery(query, null);
 
-		Tag tag = new Tag();
+		TagObj tag = new TagObj();
 
 		if (cursor.moveToFirst()) {
 			cursor.moveToFirst();
@@ -179,21 +180,38 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		return tag;
 	}
 
-	public ArrayList<String> getWallArray(String grau) {
-		String query = "Select * FROM " + TABLE_TAGS + " WHERE " + COLUMN_NAME + " =  \"" + grau + "\"";
+	public ArrayList<String> getTagArray(String tagID) {
+		String query = "Select * FROM " + TABLE_TAGS + " WHERE " + COLUMN_TAGID + " =  \"" + tagID + "\"";
 
 		openDataBase();
 
 		Cursor cursor = myDataBase.rawQuery(query, null);
 
-		ArrayList<String> walls = new ArrayList<String>();
+		ArrayList<String> tags = new ArrayList<String>();
 
 		while (cursor.moveToNext()) {
-			walls.add(cursor.getString(3));
+			tags.add(cursor.getString(3));
 		}
 		cursor.close();
 		close();
-		return walls;
+		return tags;
+	}
+	
+	public ArrayList<String> getAll() {
+		String query = "Select * FROM " + TABLE_TAGS + "\"";
+
+		openDataBase();
+
+		Cursor cursor = myDataBase.rawQuery(query, null);
+
+		ArrayList<String> tags = new ArrayList<String>();
+
+		while (cursor.moveToNext()) {
+			tags.add(cursor.getString(3));
+		}
+		cursor.close();
+		close();
+		return tags;
 	}
 
 }

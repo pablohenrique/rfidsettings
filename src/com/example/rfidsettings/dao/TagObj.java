@@ -1,6 +1,6 @@
-package com.example.rfidsettings;
+package com.example.rfidsettings.dao;
 
-public class Tag {
+public class TagObj {
 
 	//private variables
     int _id;
@@ -11,11 +11,11 @@ public class Tag {
     boolean _vibrate;
      
     // Empty constructor
-    public Tag(){
+    public TagObj(){
          
     }
     // constructor
-    public Tag(int id, Boolean threeG, Boolean lTE, Boolean wiFi, int volume, boolean vibrate){
+    public TagObj(int id, Boolean threeG, Boolean lTE, Boolean wiFi, int volume, boolean vibrate){
         this._id = id;
         this._threeG = threeG;
         this._lTE = lTE;
@@ -25,7 +25,7 @@ public class Tag {
     }
      
     // constructor
-    public Tag(Boolean threeG, Boolean lTE, Boolean wiFi, int volume, boolean vibrate){
+    public TagObj(Boolean threeG, Boolean lTE, Boolean wiFi, int volume, boolean vibrate){
         this._threeG = threeG;
         this._lTE = lTE;
         this._wiFi = wiFi;
