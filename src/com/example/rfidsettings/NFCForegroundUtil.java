@@ -1,5 +1,5 @@
 package com.example.rfidsettings;
-
+/**/
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -33,9 +33,13 @@ public class NFCForegroundUtil {
 	    } catch (MalformedMimeTypeException e) {
 	        throw new RuntimeException("Unable to speciy */* Mime Type", e);
 	    }
-	    intentFiltersArray = new IntentFilter[] { ndef };
-
-	    techListsArray = new String[][] { new String[] { NfcA.class.getName() } };
+	    
+	    try{
+	    	intentFiltersArray = new IntentFilter[] { ndef };
+		    techListsArray = new String[][] { new String[] { NfcA.class.getName() } };
+	    } catch(Exception exc){
+	    	System.out.println(exc.toString());
+	    }
 
 	}
 
