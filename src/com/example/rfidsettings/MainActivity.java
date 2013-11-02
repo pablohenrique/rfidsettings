@@ -1,5 +1,6 @@
 package com.example.rfidsettings;
 
+import com.example.rfidsettings.control.DBControl;
 import com.example.rfidsettings.dao.Connect;
 import com.example.rfidsettings.model.RFIDSettings;
 
@@ -56,9 +57,7 @@ public class MainActivity extends Activity {
 	    	sb.append(Integer.valueOf(tag.getId()[i]));
 	    }
 	    System.out.println(sb);
-	    RFIDSettings.changeWifi(this);
-	    RFIDSettings.changeVolume(this,true);
-	    RFIDSettings.changeVibrate(this,false);
+	    DBControl dbc = new DBControl(this);
 	}
 
     /**

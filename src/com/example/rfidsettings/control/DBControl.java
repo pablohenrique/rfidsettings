@@ -6,12 +6,20 @@ import android.content.Context;
 import android.database.SQLException;
 import com.example.rfidsettings.dao.Connect;
 import com.example.rfidsettings.dao.TagObj;
+import com.example.rfidsettings.model.RFIDSettings;
 
 public class DBControl{
 	
 	private Context context = null;
 	public DBControl(Context context){
 		this.context = context;
+	}
+	
+	private void executeChangesTemplate(TagObj tagobjs){
+		RFIDSettings.changeBluetooth(this.context, tagobjs.getBluetooth());
+		RFIDSettings.changeWifi(this.context, tagobjs.getWifi());
+		RFIDSettings.changeVibrate(this.context, tagobjs.getVibrate());
+		RFIDSettings.changeVolume(this.context, tagobjs.getVolume());
 	}
 
 	public ArrayList<String> Get(String rfid){
@@ -20,7 +28,7 @@ public class DBControl{
 			 TagObj tagobjs = Connect.getDBhelper().getTagArray(rfid);
 
 			if(tagobjs != null){
-				//add new tag
+				this.executeChangesTemplate(tagobjs);
 			}
 			else{
 				//exec settings
@@ -37,7 +45,10 @@ public class DBControl{
 	public ArrayList<String> Get(){
 		try {
 
-			ArrayList<String> tagobjs = Connect.getDBhelper().getAll();
+			ArrayList<TagObj> tagobjs = Connect.getDBhelper().getAll();
+			
+			for(TagObj aux : tagobjs)
+				this.executeChangesTemplate(aux);
 			
 			//Show all Tags to edit
 
