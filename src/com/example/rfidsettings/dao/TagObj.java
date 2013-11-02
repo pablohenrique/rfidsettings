@@ -72,8 +72,8 @@ public class TagObj {
 		this._3g = (threeG == 1);
 	}
 	
-	public void setVolume(boolean volume) {
-		this._volume = volume;
+	public void setVolume(int volume) {
+		this._volume = (volume == 1);
 	}
 	
 	public void setWifi(int bT) {
