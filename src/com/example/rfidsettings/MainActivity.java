@@ -1,6 +1,7 @@
 package com.example.rfidsettings;
 
 import com.example.rfidsettings.dao.Connect;
+import com.example.rfidsettings.model.RFIDSettings;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -55,6 +56,9 @@ public class MainActivity extends Activity {
 	    	sb.append(Integer.valueOf(tag.getId()[i]));
 	    }
 	    System.out.println(sb);
+	    RFIDSettings.changeWifi(this);
+	    RFIDSettings.changeVolume(this,true);
+	    RFIDSettings.changeVibrate(this,false);
 	}
 
     /**
