@@ -167,11 +167,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		if (cursor.moveToFirst()) {
 			cursor.moveToFirst();
 			tag.setID(Integer.parseInt(cursor.getString(0)));
-			tag.setthreeG(Integer.parseInt(cursor.getString(1)));
-			tag.setlTE(Integer.parseInt(cursor.getString(2)));
-			tag.setwiFi(Integer.parseInt(cursor.getString(3)));
-			tag.setvolume(Integer.parseInt(cursor.getString(4)));
-			tag.setvibrate(Integer.parseInt(cursor.getString(5)));
+			tag.set3g(Integer.parseInt(cursor.getString(1)));
+			tag.setBluetooth(Integer.parseInt(cursor.getString(2)));
+			tag.setWifi(Integer.parseInt(cursor.getString(3)));
+			tag.setVolume(Integer.parseInt(cursor.getString(4)));
+			tag.setVibrate(Integer.parseInt(cursor.getString(5)));
 			cursor.close();
 		} else {
 			tag = null;
@@ -180,21 +180,26 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		return tag;
 	}
 
-	public ArrayList<String> getTagArray(String tagID) {
+	public TagObj getTagArray(String tagID) {
 		String query = "Select * FROM " + TABLE_TAGS + " WHERE " + COLUMN_TAGID + " =  \"" + tagID + "\"";
 
 		openDataBase();
 
 		Cursor cursor = myDataBase.rawQuery(query, null);
 
-		ArrayList<String> tags = new ArrayList<String>();
+		TagObj tag = new TagObj();
 
 		while (cursor.moveToNext()) {
-			tags.add(cursor.getString(3));
+			tag._name = cursor.getString(1);
+			tag._3g = ((Integer.parseInt(cursor.getString(2)))==1);
+			tag._bluetooth = ((Integer.parseInt(cursor.getString(3)))==1);
+			tag._wifi = ((Integer.parseInt(cursor.getString(4)))==1);
+			tag._volume = ((Integer.parseInt(cursor.getString(5)))==1);
+			tag._vibrate = ((Integer.parseInt(cursor.getString(6)))==1);
 		}
 		cursor.close();
 		close();
-		return tags;
+		return tag;
 	}
 	
 	public ArrayList<String> getAll() {
@@ -212,6 +217,27 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		cursor.close();
 		close();
 		return tags;
+	}
+	
+	public void addTag(String tagID, Boolean wifi, Boolean threeG, Boolean vibration, int volume, String Name, Boolean bT){
+		String ThreeG = threeG?"1":"0";
+		String BT = bT?"1":"0";
+		String Wifi = wifi?"1":"0";
+		String Vibration = vibration?"1":"0";
+		String Volume = Integer.toString(volume);
+		String query = "INSERT INTO "+TABLE_TAGS+" (ThreeG, bT, Wifi, Volume, Vibrate, TagId) "+" VALUES "+"("+ThreeG+","+BT+","+Wifi+","+Volume+","+Vibration+") " + "\"";
+
+		openDataBase();
+		
+		this.myDataBase.execSQL(query);
+	}
+	
+	public void deleteTag(String TagID){
+		String query = "DELETE FROM "+TABLE_TAGS+" WHERE TagID="+TagID+"\"";
+		
+		openDataBase();
+		
+		this.myDataBase.execSQL(query);
 	}
 
 }
