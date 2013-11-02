@@ -4,10 +4,10 @@ public class TagObj {
 
 	//private variables
     int _id;
-    Boolean _threeG;
-    Boolean _bT;
-    Boolean _wiFi;
-    int _volume;
+    boolean _3g;
+    boolean _bluetooth;
+    boolean _wifi;
+    boolean _volume;
     boolean _vibrate;
     String _name;
      
@@ -16,21 +16,21 @@ public class TagObj {
          
     }
     // constructor
-    public TagObj(int id, Boolean threeG, Boolean bT, Boolean wiFi, int volume, boolean vibrate, String name){
+    public TagObj(int id, boolean threeG, boolean bT, boolean wiFi, boolean volume, boolean vibrate, String name){
         this._id = id;
-        this._threeG = threeG;
-        this._bT = bT;
-        this._wiFi = wiFi;
+        this._3g = threeG;
+        this._bluetooth = bT;
+        this._wifi = wiFi;
         this._volume = volume;
         this._vibrate = vibrate;
         this._name = name;
     }
      
     // constructor
-    public TagObj(Boolean threeG, Boolean bT, Boolean wiFi, int volume, boolean vibrate, String name){
-        this._threeG = threeG;
-        this._bT = bT;
-        this._wiFi = wiFi;
+    public TagObj(boolean threeG, boolean bT, boolean wiFi, boolean volume, boolean vibrate, String name){
+        this._3g = threeG;
+        this._bluetooth = bT;
+        this._wifi = wiFi;
         this._volume = volume;
         this._vibrate = vibrate;
         this._name = name;
@@ -40,19 +40,19 @@ public class TagObj {
         return this._id;
     }
      
-    public Boolean getthreeG(){
-        return this._threeG;
+    public boolean getthreeG(){
+        return this._3g;
     }
      
-    public Boolean getbT(){
-        return this._bT;
+    public boolean getbT(){
+        return this._bluetooth;
     }
     
-    public Boolean getwiFi(){
-        return this._wiFi;
+    public boolean getwiFi(){
+        return this._wifi;
     }
     
-    public int getvolume(){
+    public boolean getvolume(){
         return this._volume;
     }
     
@@ -69,15 +69,15 @@ public class TagObj {
 	}
 	
 	public void setthreeG(int threeG) {
-		this._threeG = (threeG == 1);
+		this._3g = (threeG == 1);
 	}
 	
-	public void setvolume(int volume) {
+	public void setvolume(boolean volume) {
 		this._volume = volume;
 	}
 	
 	public void setwiFi(int bT) {
-		this._bT = (bT == 1);
+		this._bluetooth = (bT == 1);
 	}
 	
 	public void setvibrate(int vibrate) {
@@ -85,7 +85,7 @@ public class TagObj {
 	}
 	
 	public void setbT(int bT) {
-		this._bT = (bT == 1);
+		this._bluetooth = (bT == 1);
 	}
 	
 	public void setbT(String bT) {
