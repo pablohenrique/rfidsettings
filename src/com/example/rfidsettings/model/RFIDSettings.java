@@ -3,6 +3,7 @@ package com.example.rfidsettings.model;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
@@ -16,6 +17,7 @@ public class RFIDSettings {
 	//private static Context context;
 	private static WifiManager wifimgmt = null;
 	private static AudioManager audiomgmt = null;
+	private static BluetoothAdapter bluetoothmgmt = null;
 	
 	public static void changeWifi(Context context){
 		wifimgmt = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
@@ -53,6 +55,16 @@ public class RFIDSettings {
 		else
 			audiomgmt.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 		Toast toast = Toast.makeText(context, "foi!", Toast.LENGTH_SHORT);
+		toast.show();
+	}
+	
+	public static void changeBluetooth(Context context, boolean enabled){
+		bluetoothmgmt = BluetoothAdapter.getDefaultAdapter();
+		if(enabled)
+			bluetoothmgmt.enable();
+		else
+			bluetoothmgmt.disable();
+		Toast toast = Toast.makeText(context, "bluetooth foi!", Toast.LENGTH_SHORT);
 		toast.show();
 	}
 }
