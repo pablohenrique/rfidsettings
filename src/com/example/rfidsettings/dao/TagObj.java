@@ -5,32 +5,35 @@ public class TagObj {
 	//private variables
     int _id;
     Boolean _threeG;
-    Boolean _lTE;
+    Boolean _bT;
     Boolean _wiFi;
     int _volume;
     boolean _vibrate;
+    String _name;
      
     // Empty constructor
     public TagObj(){
          
     }
     // constructor
-    public TagObj(int id, Boolean threeG, Boolean lTE, Boolean wiFi, int volume, boolean vibrate){
+    public TagObj(int id, Boolean threeG, Boolean bT, Boolean wiFi, int volume, boolean vibrate, String name){
         this._id = id;
         this._threeG = threeG;
-        this._lTE = lTE;
+        this._bT = bT;
         this._wiFi = wiFi;
         this._volume = volume;
         this._vibrate = vibrate;
+        this._name = name;
     }
      
     // constructor
-    public TagObj(Boolean threeG, Boolean lTE, Boolean wiFi, int volume, boolean vibrate){
+    public TagObj(Boolean threeG, Boolean bT, Boolean wiFi, int volume, boolean vibrate, String name){
         this._threeG = threeG;
-        this._lTE = lTE;
+        this._bT = bT;
         this._wiFi = wiFi;
         this._volume = volume;
         this._vibrate = vibrate;
+        this._name = name;
     }
     
     public int getID(){
@@ -41,8 +44,8 @@ public class TagObj {
         return this._threeG;
     }
      
-    public Boolean getlTE(){
-        return this._lTE;
+    public Boolean getbT(){
+        return this._bT;
     }
     
     public Boolean getwiFi(){
@@ -57,6 +60,10 @@ public class TagObj {
         return this._vibrate;
     }
     
+    public String getname(){
+        return this._name;
+    }
+    
 	public void setID(int id) {
 		this._id = id;
 	}
@@ -69,15 +76,19 @@ public class TagObj {
 		this._volume = volume;
 	}
 	
-	public void setwiFi(int lTE) {
-		this._lTE = (lTE == 1);
+	public void setwiFi(int bT) {
+		this._bT = (bT == 1);
 	}
 	
 	public void setvibrate(int vibrate) {
 		this._vibrate = (vibrate == 1);		
 	}
 	
-	public void setlTE(int lTE) {
-		this._lTE = (lTE == 1);
+	public void setbT(int bT) {
+		this._bT = (bT == 1);
+	}
+	
+	public void setbT(String bT) {
+		this._name = bT;
 	}
 }
