@@ -82,7 +82,7 @@ public class MyDB{
 		String sql = "SELECT * FROM " + EMP_TABLE + " WHERE " + EMP_TAGID + " = '" + tagid + "';";
 		Cursor mCursor = database.rawQuery(sql, null);
 		mCursor.moveToFirst();
-		
+		///*
 		tag.setTagID(mCursor.getString(0));
 		tag.setName(mCursor.getString(1));
 		tag.set3g(mCursor.getInt(2));
@@ -91,16 +91,9 @@ public class MyDB{
 		tag.setVolume(mCursor.getInt(5));
 		tag.setVibrate(mCursor.getInt(6));
 		
-		System.out.println(mCursor.getString(0));
-		System.out.println(mCursor.getString(1));
-		System.out.println(mCursor.getInt(2));
-		System.out.println(mCursor.getInt(3));
-		System.out.println(mCursor.getInt(4));
-		System.out.println(mCursor.getInt(5));
-		System.out.println(mCursor.getInt(6));
-		
-        mCursor.close();
+        //mCursor.close();
         return tag;
+		//return new TagObj(mCursor.getString(0),mCursor.getString(1),mCursor.getInt(2),mCursor.getInt(3),mCursor.getInt(4),mCursor.getInt(5),mCursor.getInt(6));
 	}
 	
 	public void deleteRecords(String TagID){
@@ -113,13 +106,14 @@ public class MyDB{
 	}
 	
 	public void ActivateChanges(String TagID){
-		TagObj tag = this.Get(TagID);
-		System.out.println(tag.getBWifi());
-		System.out.println(tag.getTagID());
+		TagObj tag = new TagObj();
+		tag = this.Get(TagID);
 		RFIDSettings.changeWifi(this.context, tag.getBWifi());
-		//RFIDSettings.changeBluetooth(this.context, tag.getBluetooth());
-		//RFIDSettings.changeVibrate(this.context, tag.getVibrate());
-		//RFIDSettings.changeVolume(this.context, tag.getVolume());
+		RFIDSettings.changeBluetooth(this.context, tag.getBBluetooth());
+		if(tag.getBVibrate() == true)
+			RFIDSettings.changeVibrate(this.context, tag.getBVibrate());
+		else
+			RFIDSettings.changeVolume(this.context, tag.getBVolume());
 	}
 
 }

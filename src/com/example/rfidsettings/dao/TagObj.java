@@ -3,7 +3,6 @@ package com.example.rfidsettings.dao;
 public class TagObj {
 
 	//private variables
-    int _id;
     boolean _3g;
     boolean _bluetooth;
     boolean _wifi;
@@ -18,7 +17,7 @@ public class TagObj {
     }
     
 	private boolean ConverIntegerBoolean(Integer i){
-		return (i == 1) ? true : false;
+		return (i == 0) ? true : false;
 	}
 	
 	private Integer ConverBooleanInteger(boolean b){
@@ -26,14 +25,14 @@ public class TagObj {
 	}
     
     // constructor
-    public TagObj(int id, boolean threeG, boolean bT, boolean wiFi, boolean volume, boolean vibrate, String name){
-        this._id = id;
+    public TagObj(String TagID, String name, boolean threeG, boolean bT, boolean wiFi, boolean volume, boolean vibrate){
         this._3g = threeG;
         this._bluetooth = bT;
         this._wifi = wiFi;
         this._volume = volume;
         this._vibrate = vibrate;
         this._name = name;
+        this._tagid = TagID;
     }
      
     // constructor
@@ -46,10 +45,6 @@ public class TagObj {
         this._name = name;
     }
     
-    public int getID(){
-        return this._id;
-    }
-     
     public Integer get3g(){
         return this.ConverBooleanInteger(this._3g);
     }
@@ -105,10 +100,6 @@ public class TagObj {
     public String getTagID(){
         return this._tagid;
     }
-    
-	public void setID(int id) {
-		this._id = id;
-	}
 	
 	public void set3g(int threeG) {
 		this._3g = this.ConverIntegerBoolean(threeG);
@@ -119,7 +110,7 @@ public class TagObj {
 	}
 	
 	public void setWifi(int bT) {
-		this._bluetooth = this.ConverIntegerBoolean(bT);
+		this._wifi = this.ConverIntegerBoolean(bT);
 	}
 	
 	public void setVibrate(int vibrate) {
