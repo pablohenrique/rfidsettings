@@ -6,24 +6,24 @@ import android.database.SQLException;
 
 public class Connect {
 
-	private static DataBaseHelper DBhelper = null;
+	//private static DataBaseHelper DBhelper = null;
 	private static Connect instance = null;
 	private Connect(Context context){
-		DBhelper = new DataBaseHelper(context); 
-
-		try {
-			DBhelper.createDataBase();
-
-		} catch (IOException ioe) {
-
-			throw new Error("Unable to create database");
-		}
-		try {
-			DBhelper.openDataBase();
-		}
-		catch(SQLException sqle){
-			throw sqle;
-		}
+//		DBhelper = new DataBaseHelper(context); 
+//
+//		try {
+//			DBhelper.createDataBase();
+//
+//		} catch (IOException ioe) {
+//
+//			throw new Error("Unable to create database");
+//		}
+//		try {
+//			DBhelper.openDataBase();
+//		}
+//		catch(SQLException sqle){
+//			throw sqle;
+//		}
 	}
 
 	public static Connect getInstance(Context context){
@@ -33,7 +33,7 @@ public class Connect {
 
 	}
 
-	public static DataBaseHelper getDBhelper(){
-		return DBhelper;
-	}
+//	public static DataBaseHelper getDBhelper(){
+//		return DBhelper;
+//	}
 }

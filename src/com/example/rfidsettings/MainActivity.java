@@ -1,7 +1,11 @@
 package com.example.rfidsettings;
 
-import com.example.rfidsettings.control.DBControl;
+import java.io.File;
+
+import com.example.rfidsettings.control.MyDB;
 import com.example.rfidsettings.dao.Connect;
+import com.example.rfidsettings.dao.MyDatabaseHelper;
+import com.example.rfidsettings.dao.TagObj;
 import com.example.rfidsettings.model.RFIDSettings;
 
 import android.app.Activity;
@@ -57,8 +61,7 @@ public class MainActivity extends Activity {
 	    	sb.append(Integer.valueOf(tag.getId()[i]));
 	    }
 	    System.out.println(sb);
-	    DBControl dbc = new DBControl(this);
-	    dbc.Get(sb.toString());
+	    MyDB mdb = new MyDB(this);
 	}
 
     /**
