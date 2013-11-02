@@ -12,9 +12,7 @@ import android.view.Menu;
 
 public class MainActivity extends Activity {
 	static String TAG = "NFCREADER";
-
 	NFCForegroundUtil nfcForegroundUtil = null;
-
 	private TextView info;
 
 	@Override
@@ -48,11 +46,13 @@ public class MainActivity extends Activity {
 
 	public void onNewIntent(Intent intent) {
 	    Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-	    /*StringBuilder sb = new StringBuilder();
+	    StringBuilder sb = new StringBuilder();
 	    for(int i = 0; i < tag.getId().length; i++){
-	    	sb.append(new Integer(tag.getId()[i]) + " ");
-	    }*/
-	    info.setText("TagID: " + bytesToHex(tag.getId()));    
+	    	sb.append(Integer.valueOf(tag.getId()[i]) + " ");
+	    }
+	    System.out.println(sb);
+	    //info.setText("TagID: " + sb);
+	    //info.setText("TagID: " + bytesToHex(tag.getId()));    
 
 	}
 
