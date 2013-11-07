@@ -7,7 +7,6 @@ import android.content.IntentFilter;
 import android.content.IntentFilter.MalformedMimeTypeException;
 import android.nfc.NfcAdapter;
 import android.nfc.tech.NfcA;
-import android.nfc.tech.NfcV;
 import android.util.Log;
 
 public class NFCForegroundUtil {

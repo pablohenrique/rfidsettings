@@ -4,13 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/txtTagName"
+    <EditText
+        android:text="@string/Textdefault"
+        android:id="@+id/txtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/tagname"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
 
     <TextView
         android:id="@+id/txtWifi"
@@ -26,21 +28,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/chkwifi" />
-
-    <TextView
-        android:id="@+id/txt3g"
-        android:layout_width="42dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/gg"
-        android:textSize="23px" />
-
-    <CheckBox
-        android:id="@+id/chk3g"
-        android:layout_width="90dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/chk3g" />
 
     <TextView
         android:id="@+id/txtVib"
@@ -91,6 +78,7 @@
         android:id="@+id/btnGravar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btnGravar" />
+        android:text="@string/btnGravar" 
+        android:onClick="btnGravarClicked"/>
 
 </LinearLayout>

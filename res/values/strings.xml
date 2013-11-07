@@ -18,7 +18,8 @@
     <string name="chkVolume"> </string>
     <string name="bluetooth">Bluetooth </string>
     <string name="chkBlueTooth"> </string>
-    <string name="btnGravar">Gravar </string>
+    <string name="btnGravar">Add </string>
+    <string name="Textdefault">Insert a name</string>
     
     
 
