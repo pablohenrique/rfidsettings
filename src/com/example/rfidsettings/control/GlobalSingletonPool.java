@@ -2,13 +2,13 @@ package com.example.rfidsettings.control;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.nfc.Tag;
 
 import java.util.HashMap;
 
 import com.example.rfidsettings.NFCForegroundUtil;
 import com.example.rfidsettings.dao.MyDB;
 import com.example.rfidsettings.dao.MyDatabaseHelper;
-import com.example.rfidsettings.model.RFIDSettings;
 
 @SuppressLint("DefaultLocale")
 public class GlobalSingletonPool {
@@ -46,6 +46,18 @@ public class GlobalSingletonPool {
 		if(objectPool.containsKey(aux))
 			objectPool.remove(aux);
 		objectPool.put(aux, value);
+	}
+	
+	public NFCForegroundUtil getNFCForegroundUtil(){
+		return (NFCForegroundUtil)this.getObject("nfcforegroundutil");
+	}
+	
+	public Tag getTag(){
+		return (Tag)this.getObject("tag");
+	}
+	
+	public RFIDSettings getRFIDSettings(){
+		return (RFIDSettings)this.getObject("rfidsettings");
 	}
 	
 	/*

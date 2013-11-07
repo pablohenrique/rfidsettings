@@ -2,7 +2,6 @@ package com.example.rfidsettings.dao;
 
 import java.util.ArrayList;
 
-import com.example.rfidsettings.model.RFIDSettings;
 import com.example.rfidsettings.model.RFIDTag;
 
 import android.content.Context;

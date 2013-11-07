@@ -11,7 +11,6 @@ import android.util.Log;
 
 public class NFCForegroundUtil {
 	private NfcAdapter nfc;
-
 	private Activity activity;
 	private IntentFilter intentFiltersArray[];
 	private PendingIntent intent;
@@ -20,10 +19,8 @@ public class NFCForegroundUtil {
 	public NFCForegroundUtil(Activity activity) {
 	    super();
 	    this.activity = activity; 
-	    nfc = NfcAdapter.getDefaultAdapter(activity.getApplicationContext());
-
-	    intent = PendingIntent.getActivity(activity, 0, new Intent(activity,
-	            activity.getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+	    this.nfc = NfcAdapter.getDefaultAdapter(activity.getApplicationContext());
+	    this.intent = PendingIntent.getActivity(activity, 0, new Intent(activity, activity.getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
 
 	    IntentFilter ndef = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
 
@@ -45,17 +42,16 @@ public class NFCForegroundUtil {
 	public void enableForeground()
 	{
 	    Log.d("demo", "Foreground NFC dispatch enabled");
-	    nfc.enableForegroundDispatch(
-                activity, intent, intentFiltersArray, techListsArray);     
+	    this.nfc.enableForegroundDispatch(activity, intent, intentFiltersArray, techListsArray);     
 	}
 
 	public void disableForeground()
 	{
 	    Log.d("demo", "Foreground NFC dispatch disabled");
-	    nfc.disableForegroundDispatch(activity);
+	    this.nfc.disableForegroundDispatch(activity);
 	}
 
 	public NfcAdapter getNfc() {
-	    return nfc;
+	    return this.nfc;
 	}   
 }
