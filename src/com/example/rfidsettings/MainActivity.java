@@ -46,10 +46,11 @@ public class MainActivity extends Activity {
 	    }
 		System.out.println("On Intent: " + sb);
 		
+		/*
 		GlobalSingletonPool.getInstance().getRFIDSettings().changeBluetooth(true);
 		GlobalSingletonPool.getInstance().getRFIDSettings().changeWifi(true);
 		GlobalSingletonPool.getInstance().getRFIDSettings().changeVibrate(true);
-		/*
+		
 		MyDB mdb = (MyDB)GlobalSingletonPool.getInstance().getObject("mydb");
 		mdb.post(new RFIDTag("-45-5615-79", "CardA", 0, 1, 1, 1, 0));
     	//mdb.post(new RFIDTag("-9370-47-100", "CardB", 0, 1, 1, 0, 1));
@@ -57,70 +58,4 @@ public class MainActivity extends Activity {
     	mdb.post(new RFIDTag("-10761850", "StickerB", 0, 0, 1, 0, 1));
     	*/
 	}
-	
-	/*
-	public void btnGravarClicked(View view){
-		System.out.println("Antes: " + sb.toString());
-		
-		EditText txtName = (EditText) findViewById(R.id.txtName);
-		CheckBox chkWifi = (CheckBox) findViewById(R.id.chkWifi);
-		CheckBox chkBlueTooth = (CheckBox) findViewById(R.id.chkBlueTooth);
-		CheckBox chkVolume = (CheckBox) findViewById(R.id.chkVolume);
-		CheckBox chkVibration = (CheckBox) findViewById(R.id.chkVib);
-		
-		System.out.println(sb.toString());
-		
-		mdb.createRecords(sb.toString(), txtName.getText().toString(), false, chkBlueTooth.isChecked(), chkWifi.isChecked(), chkVolume.isChecked(), chkVibration.isChecked());
-		
-		setContentView(R.layout.activity_main);
-		setContentView(R.layout.activity_main);
-		
-    }
-	*/
-
-    /*
-     *  Convenience method to convert a byte array to a hex string.
-     *
-     * @param  data  the byte[] to convert
-     * @return String the converted byte[]
-     */
-	/*
-    public static String bytesToHex(byte[] data) {
-        StringBuffer buf = new StringBuffer();
-        for (int i = 0; i < data.length; i++) {
-            buf.append(byteToHex(data[i]).toUpperCase(Locale.getDefault()));
-            buf.append(" ");
-        }
-        return (buf.toString());
-    }
-	*/
-    /*
-     *  method to convert a byte to a hex string.
-     *
-     * @param  data  the byte to convert
-     * @return String the converted byte
-     */
-    /*
-	public static String byteToHex(byte data) {
-        StringBuffer buf = new StringBuffer();
-        buf.append(toHexChar((data >>> 4) & 0x0F));
-        buf.append(toHexChar(data & 0x0F));
-        return buf.toString();
-    }
-	*/
-    /*
-     *  Convenience method to convert an int to a hex char.
-     *
-     * @param  i  the int to convert
-     * @return char the converted char
-     */
-	/*
-    public static char toHexChar(int i) {
-        if ((0 <= i) && (i <= 9)) {
-            return (char) ('0' + i);
-        } else {
-            return (char) ('a' + (i - 10));
-        }
-    }
-    */
 }
