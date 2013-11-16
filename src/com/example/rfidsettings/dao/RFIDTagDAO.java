@@ -18,7 +18,6 @@ public class RFIDTagDAO extends SQLiteOpenHelper{
     
     private static final String COLUMN_NAMES = "tagid, name, threeg, bluetooth, wifi, volume, vibrate";
     private static final String GETALL = "SELECT "+ COLUMN_NAMES +" FROM " + TABLE_NAME;
-    private static final String GETONE = GETALL + " WHERE tagid = '";
     
  
     public RFIDTagDAO(Context context) {
@@ -28,17 +27,17 @@ public class RFIDTagDAO extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
     	try{
-        db.execSQL("CREATE TABLE "
-        		+ TABLE_NAME + " ("
-        		+ "_id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + " tagid TEXT,"
-        		+ " name TEXT,"
-                + " threeg INTEGER,"
-        		+ " bluetooth INTEGER,"
-                + " wifi INTEGER,"
-        		+ " volume INTEGER,"
-                + " vibrate INTEGER,"
-        		+ " UNIQUE(tagid) ON CONFLICT REPLACE);");
+	        db.execSQL("CREATE TABLE "
+	        		+ TABLE_NAME + " ("
+	        		+ "_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+	                + " tagid TEXT,"
+	        		+ " name TEXT,"
+	                + " threeg INTEGER,"
+	        		+ " bluetooth INTEGER,"
+	                + " wifi INTEGER,"
+	        		+ " volume INTEGER,"
+	                + " vibrate INTEGER,"
+	        		+ " UNIQUE(tagid) ON CONFLICT REPLACE);");
     	}
     	catch(Exception except){
     		System.out.println("onCreate Database: " + except.toString());
@@ -47,30 +46,25 @@ public class RFIDTagDAO extends SQLiteOpenHelper{
  
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
- 
+    	// Drop older table if existed
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        // Create tables again
+        onCreate(db);
     }
     
     public void update(RFIDTag tag){
-    	try{
-    		getWritableDatabase().update(TABLE_NAME, this.createContenValueTemplate(tag), KEY_NAME + " = '" + tag.getTagID() + "'", null);
-    	}
-    	catch(Exception except){
-    		System.out.println("update Database: " + except.toString());
-    	}
+		if(this.getWritableDatabase().update(TABLE_NAME, this.createContenValueTemplate(tag), KEY_NAME + " = '" + tag.getTagID() + "'", null) == 0)
+			System.out.println("EXCEPTION:  update Database");
     }
     
     public void insert(RFIDTag tag){
-    	try{
-    		getWritableDatabase().insert(TABLE_NAME, "tagid", this.createContenValueTemplate(tag));
-    	}
-    	catch(Exception except){
-    		System.out.println("insert Database: " + except.toString());
-    	}
+    	if(this.getWritableDatabase().insert(TABLE_NAME, "tagid", this.createContenValueTemplate(tag)) == -1)
+    		System.out.println("EXCEPTION:  insert Database");
     }
     
     public RFIDTag get(String tagid){
     	try{
-    		Cursor cursor = getReadableDatabase().rawQuery(GETONE + tagid + "'",null);
+    		Cursor cursor = this.getReadableDatabase().query(TABLE_NAME, new String[] {"tagid", "name", "threeg", "bluetooth", "wifi", "volume", "vibrate"}, "tagid = '" + tagid + "'", null, null, null, null);
     		cursor.moveToFirst();
     		RFIDTag tag = this.bindDataTemplate(cursor);
     		cursor.close();
@@ -85,9 +79,11 @@ public class RFIDTagDAO extends SQLiteOpenHelper{
     public ArrayList<RFIDTag> getAll(){
     	try{
     		ArrayList<RFIDTag> array = new ArrayList<RFIDTag>();
-    		Cursor cursor = getReadableDatabase().rawQuery(GETALL,null);
-    		while(!cursor.moveToNext())
+    		Cursor cursor = this.getReadableDatabase().rawQuery(GETALL,null);
+    		
+    		for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext())
     			array.add(this.bindDataTemplate(cursor));
+    		
     		cursor.close();
     		
     		return array;
@@ -99,21 +95,11 @@ public class RFIDTagDAO extends SQLiteOpenHelper{
     }
     
     public void delete(String tagid){
-    	try{
-    		getWritableDatabase().delete(TABLE_NAME, KEY_NAME + "='" + tagid + "'", null);
-    	}
-    	catch(Exception except){
-    		System.out.println("delete Database: " + except.toString());
-    	}
+    	this.getWritableDatabase().delete(TABLE_NAME, KEY_NAME + "='" + tagid + "'", null);
     }
     
     public void deleteAll(){
-    	try{
-    		getWritableDatabase().delete(TABLE_NAME, null, null);
-    	}
-    	catch(Exception except){
-    		System.out.println("delete Database: " + except.toString());
-    	}
+    	this.getWritableDatabase().delete(TABLE_NAME, null, null);
     }
     
     private RFIDTag bindDataTemplate(Cursor cursor){
