@@ -5,9 +5,7 @@ import com.example.rfidsettings.model.RFIDTag;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.nfc.NfcAdapter;
 import android.os.Bundle;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	static String TAG = "NFCREADER";
@@ -17,18 +15,19 @@ public class MainActivity extends Activity {
 	    super.onCreate(savedInstanceState);
 	    
 	    //The two lines below is necessary for the well being of the project
-	    GlobalSingletonPool.getInstance().setContext(this);
-	    GlobalSingletonPool.getInstance().setObject("nfcforegroundutil",new NFCForegroundUtil(this));
+	    GlobalSingletonPool.getInstance().setContextActivity(this,this);
 	    
+	    ///*
 	    GlobalSingletonPool.getInstance().getRFIDTagDAO().insert(new RFIDTag("-45-5615-79", "CardA", 0, 1, 1, 1, 0));
 	    GlobalSingletonPool.getInstance().getRFIDTagDAO().insert(new RFIDTag("-9370-47-100", "CardB", 0, 1, 1, 0, 1));
 	    GlobalSingletonPool.getInstance().getRFIDTagDAO().insert(new RFIDTag("-92-128850", "StickerA", 0, 1, 0, 1, 0));
 	    GlobalSingletonPool.getInstance().getRFIDTagDAO().insert(new RFIDTag("-10761850", "StickerB", 0, 0, 1, 0, 1));
 	    
-	    //System.out.println(GlobalSingletonPool.getInstance().getRFIDTagDAO().get("-45-5615-79").getName());
-	    System.out.println(GlobalSingletonPool.getInstance().getRFIDTagDAO().getAll().toString());
-	    
-	    //GlobalSingletonPool.getInstance().getRFIDTagDAO().insert();
+	    ///*
+	    System.out.println(GlobalSingletonPool.getInstance().getRFIDTagDAO().get("-45-5615-79").getName());
+	    for(RFIDTag elem : GlobalSingletonPool.getInstance().getRFIDTagDAO().getAll())
+	    	System.out.println(elem.getName());
+	    //*/
 	    
 	    //setContentView(R.layout.);
 	    //info = (TextView)findViewById(R.id.action_settings);
