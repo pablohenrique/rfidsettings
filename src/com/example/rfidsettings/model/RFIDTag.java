@@ -98,25 +98,25 @@ public class RFIDTag {
     /*
      * Set methods
      */
-	
-	public void set3g(int threeG) {
-		this.threeG = this.ConverIntegerBoolean(threeG);
+    
+	public void set3g(Object threeG) {
+		this.threeG = (threeG instanceof Integer) ? this.ConverIntegerBoolean((Integer)threeG) : (Boolean)threeG;
 	}
 	
-	public void setVolume(int volume) {
-		this.volume = this.ConverIntegerBoolean(volume);
+	public void setVolume(Object volume) {
+		this.volume = (volume instanceof Integer) ? this.ConverIntegerBoolean((Integer)volume) : (Boolean)volume;
 	}
 	
-	public void setWifi(int bT) {
-		this.wifi = this.ConverIntegerBoolean(bT);
+	public void setWifi(Object wifi) {
+		this.wifi = (wifi instanceof Integer) ? this.ConverIntegerBoolean((Integer)wifi) : (Boolean)wifi;
 	}
 	
-	public void setVibrate(int vibrate) {
-		this.vibrate = this.ConverIntegerBoolean(vibrate);		
+	public void setVibrate(Object vibrate) {
+		this.vibrate = (vibrate instanceof Integer) ? this.ConverIntegerBoolean((Integer)vibrate) : (Boolean)vibrate;		
 	}
 	
-	public void setBluetooth(int bT) {
-		this.bluetooth = this.ConverIntegerBoolean(bT);
+	public void setBluetooth(Object bluetooth) {
+		this.bluetooth = (bluetooth instanceof Integer) ? this.ConverIntegerBoolean((Integer)bluetooth) : (Boolean)bluetooth;
 	}
 	
 	public void setName(String name) {

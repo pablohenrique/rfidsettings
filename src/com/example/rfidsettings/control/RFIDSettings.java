@@ -1,5 +1,7 @@
 package com.example.rfidsettings.control;
 
+import com.example.rfidsettings.model.RFIDTag;
+
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.media.AudioManager;
@@ -15,7 +17,16 @@ public class RFIDSettings {
 		this.context = cont;
 	}
 	
-	public void changeWifi(boolean enabled){
+	public void applyChanges(RFIDTag tag){
+		this.changeBluetooth(tag.getBBluetooth());
+		this.changeWifi(tag.getBWifi());
+		if(tag.getBVibrate())
+			this.changeVibrate(tag.getBVibrate());
+		else
+			this.changeVolume(tag.getBVolume());
+	}
+	
+	private void changeWifi(boolean enabled){
 		if(this.wifimgmt == null)
 			this.wifimgmt = (WifiManager) this.context.getSystemService(Context.WIFI_SERVICE);
 		
@@ -26,7 +37,7 @@ public class RFIDSettings {
 		this.wifimgmt.saveConfiguration();
 	}
 	
-	public void changeVolume(boolean enabled){
+	private void changeVolume(boolean enabled){
 		if(this.audiomgmt == null)
 			this.audiomgmt = (AudioManager) this.context.getSystemService(Context.AUDIO_SERVICE);
 		
@@ -36,7 +47,7 @@ public class RFIDSettings {
 			this.audiomgmt.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 	}
 	
-	public void changeVibrate(boolean enabled){
+	private void changeVibrate(boolean enabled){
 		if(this.audiomgmt == null)
 			this.audiomgmt = (AudioManager) this.context.getSystemService(Context.AUDIO_SERVICE);
 		
@@ -46,7 +57,7 @@ public class RFIDSettings {
 			this.audiomgmt.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 	}
 	
-	public void changeBluetooth(boolean enabled){
+	private void changeBluetooth(boolean enabled){
 		if(this.bluetoothmgmt == null)
 			this.bluetoothmgmt = BluetoothAdapter.getDefaultAdapter();
 		
