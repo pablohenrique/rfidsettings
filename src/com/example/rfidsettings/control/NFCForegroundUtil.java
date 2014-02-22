@@ -18,6 +18,7 @@ public class NFCForegroundUtil {
 
 	public NFCForegroundUtil(Activity activity) {
 	    super();
+	    
 	    this.activity = activity; 
 	    this.nfc = NfcAdapter.getDefaultAdapter(activity.getApplicationContext());
 	    this.intent = PendingIntent.getActivity(activity, 0, new Intent(activity, activity.getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);

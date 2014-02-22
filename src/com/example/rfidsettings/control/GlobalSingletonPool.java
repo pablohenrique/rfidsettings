@@ -2,7 +2,6 @@ package com.example.rfidsettings.control;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.nfc.Tag;
 
 import java.util.HashMap;
@@ -33,10 +32,10 @@ public class GlobalSingletonPool {
 		return this.objectPool.get(key.toLowerCase());
 	}
 	
-	public void setContextActivity(Context context, Activity activity){
-		this.setObject("context", context);
-		this.setObject("rfidsettings", new RFIDSettings(context));
-		this.setObject("rfidtagdao", new RFIDTagDAO(context));
+	public void setMainObjects(Activity activity){
+		this.setObject("context", activity.getApplicationContext());
+		this.setObject("rfidsettings", new RFIDSettings(activity.getApplicationContext()));
+		this.setObject("rfidtagdao", new RFIDTagDAO(activity.getApplicationContext()));
 		this.setObject("nfcforegroundutil",new NFCForegroundUtil(activity));
 	}
 	
