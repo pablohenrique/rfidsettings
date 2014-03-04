@@ -1,10 +1,15 @@
 package com.example.rfidsettings.control;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import com.example.rfidsettings.model.RFIDTag;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
+import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 
 public class RFIDSettings {
@@ -65,5 +70,23 @@ public class RFIDSettings {
 			this.bluetoothmgmt.enable();
 		else
 			this.bluetoothmgmt.disable();
+	}
+	private void changeMobileData(boolean enabled){
+		try{
+			ConnectivityManager dataMgmt = (ConnectivityManager)this.context.getSystemService(Context.CONNECTIVITY_SERVICE);
+			Method dataMtd = (Method)ConnectivityManager.class.getDeclaredMethod("setMobileDataEnabled", boolean.class).invoke(dataMgmt, true);
+			dataMtd.setAccessible(true);
+			dataMtd.invoke(dataMgmt, true);
+		}catch(Exception exp){
+			exp.printStackTrace();
+		}
+	}
+	
+	private void changeMap(boolean enabled){
+		if(enabled){
+			Intent intent = new Intent(Intent.ACTION_VIEW);
+		    intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+		    this.context.startActivity(intent);
+		}
 	}
 }

@@ -1,95 +1,70 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
 
     <!--
-    <EditText
-        android:text="@string/Textdefault"
-        android:id="@+id/txtName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     -->
 
-    <TextView
-        android:id="@+id/txtWifi"
-        android:layout_width="41dp"
-        android:layout_height="24dp"
-        android:gravity="center"
-        android:text="@string/wifi"
-        android:textSize="23sp"
-    />
 
-    <CheckBox
-        android:id="@+id/chkWifi"
-        android:layout_width="133dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/chkwifi"
-    />
-    
-    <TextView
-        android:id="@+id/txtVib"
-        android:layout_width="90dp"
-        android:layout_height="24dp"
-        android:gravity="center"
-        android:text="@string/vib"
-        android:textSize="23sp"
-    />
-
-    <CheckBox
-        android:id="@+id/chkVib"
-        android:layout_width="129dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/chkVib" />
-
-    <TextView
-        android:id="@+id/txtVolume"
-        android:layout_width="88dp"
-        android:layout_height="24dp"
-        android:gravity="center"
-        android:text="@string/volume"
-        android:textSize="23sp" />
-
-    <CheckBox
-        android:id="@+id/chkVolume"
-        android:layout_width="139dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/chkVolume" />
-
-    <TextView
-        android:id="@+id/txtBlueTooth"
-        android:layout_width="103dp"
-        android:layout_height="24dp"
-        android:gravity="center"
-        android:text="@string/bluetooth"
-        android:textSize="23sp" />
-
-    <CheckBox
-        android:id="@+id/chkBlueTooth"
-        android:layout_width="101dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/chkBlueTooth" />
-
-    <Button
-        android:id="@+id/btnGravar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="btnGravarClicked"
-        android:text="@string/btnGravar" />
+    <!--
+    <View
+        android:id="@+id/viewCircle" 
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle" />
+    -->
 
     <ToggleButton
-        android:id="@+id/toggleButton1"
-        android:layout_width="wrap_content"
+        android:id="@+id/toggleVolume"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
-        android:text="ToggleButton" />
+        android:layout_above="@+id/toggleBluetooth"
+        android:layout_alignLeft="@+id/toggleWifi"
+        android:layout_marginBottom="33dp"
+        android:text="@string/toggle"
+        android:textOff="Volume Off"
+        android:textOn="Volume On" />
 
-</LinearLayout>
+    <ToggleButton
+        android:id="@+id/toggleBluetooth"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/toggleVolume"
+        android:layout_centerVertical="true"
+        android:text="@string/toggle"
+        android:textOff="Bluetooth Off"
+        android:textOn="Bluetooth On" />
+
+    <ToggleButton
+        android:id="@+id/toggleWifi"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/toggleVolume"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="34dp"
+        android:text="@string/toggle"
+        android:textOff="Wifi Off"
+        android:textOn="Wifi On" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton4"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/toggleBluetooth"
+        android:layout_below="@+id/toggleBluetooth"
+        android:layout_marginTop="30dp"
+        android:text="@string/toggle"
+        android:textOff="Vibrate Off"
+        android:textOn="Vibrate On" />
+
+</RelativeLayout>

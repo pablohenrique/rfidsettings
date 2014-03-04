@@ -4,7 +4,7 @@
     <string name="app_name">RFIDsettings</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="reading">Reading...</string>
+    <string name="reading">Reading ...</string>
     <string name="taptoread">Tap a tag to read it.</string>
     <string name="changed">Settings Changed. </string>
     <string name="tagname">Name </string>
@@ -20,6 +20,8 @@
     <string name="chkBlueTooth"> </string>
     <string name="btnGravar">Add </string>
     <string name="Textdefault">Insert a name</string>
+    <string name="edit">Edit</string>
+    <string name="toggle">ToggleButton</string>
     
     
 

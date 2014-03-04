@@ -12,7 +12,11 @@ public class RFIDTag {
     boolean vibrate;
     
 	// constructor
-	public RFIDTag(){ }
+    public RFIDTag(){ }
+    
+    public RFIDTag(String id){
+    	this.tagID = id;
+    }
     
     // constructor
 	public RFIDTag(String TagID, String name, boolean threeG, boolean bT, boolean wiFi, boolean volume, boolean vibrate){
