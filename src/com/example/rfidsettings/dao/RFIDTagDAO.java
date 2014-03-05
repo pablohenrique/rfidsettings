@@ -55,6 +55,7 @@ public class RFIDTagDAO extends SQLiteOpenHelper{
     public void update(RFIDTag tag){
 		if(this.getWritableDatabase().update(TABLE_NAME, this.createContenValueTemplate(tag), KEY_NAME + " = '" + tag.getTagID() + "'", null) == 0)
 			System.out.println("EXCEPTION:  update Database");
+		System.out.println("update RFIDTag DAO");
     }
     
     public void insert(RFIDTag tag){

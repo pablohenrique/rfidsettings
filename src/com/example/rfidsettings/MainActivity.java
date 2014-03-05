@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
 	    // 0 -> TRUE
 	    // 1 -> FALSE
 	    // String TagID, String name, Integer threeG, Integer bluetooth, Integer wifi, Integer volume, Integer vibrate
-	    GlobalSingletonPool.getInstance().getRFIDTagDAO().insert(new RFIDTag("-45-5615-79", "CardA", 0, 1, 0, 0, 1)); //home
+	    //GlobalSingletonPool.getInstance().getRFIDTagDAO().insert(new RFIDTag("-45-5615-79", "CardA", 0, 1, 0, 0, 1)); //home
 	    //GlobalSingletonPool.getInstance().getRFIDTagDAO().insert(new RFIDTag("-10761850", "StickerB", 0, 1, 1, 1, 0)); //office
 	    
 	    setContentView(R.layout.activity_main);
@@ -70,6 +70,7 @@ public class MainActivity extends Activity {
 	    }else{
 	    	GlobalSingletonPool.getInstance().setObject("activetag", tag);
 		    this.activateTag(tag);
+		    this.editButton.setEnabled(true);
 	    }
 	}
 	
@@ -95,7 +96,6 @@ public class MainActivity extends Activity {
 	
 	///*
 	private void addButtonListener(){
-		System.out.println("beginning");
 		this.editButton = (Button)this.findViewById(R.id.buttonEdit);
 	    this.editButton.setOnClickListener(new Button.OnClickListener()
             {
@@ -106,7 +106,7 @@ public class MainActivity extends Activity {
                 }
             }
         );
-	    System.out.println("ending");
+	    this.editButton.setEnabled(false);
 	}
 	//*/
 	

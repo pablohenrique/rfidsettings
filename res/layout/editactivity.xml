@@ -66,7 +66,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/toggleButtonWifi"
         android:ems="10"
-        android:text="Give this tag a name" />
+        android:text="Give this tag a name"
+        android:singleLine="true"/>
 
     <TextView
         android:id="@+id/textView1"
@@ -75,5 +76,23 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="Ads should be placed here" />
+
+    <Button
+        android:id="@+id/saveAll"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_marginBottom="20dp"
+        android:layout_toRightOf="@+id/toggleButtonMaps"
+        android:text="Save" />
+
+    <Button
+        android:id="@+id/deleteAll"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/saveAll"
+        android:layout_alignBottom="@+id/saveAll"
+        android:layout_toLeftOf="@+id/toggleButtonMaps"
+        android:text="Delete" />
 
 </RelativeLayout>

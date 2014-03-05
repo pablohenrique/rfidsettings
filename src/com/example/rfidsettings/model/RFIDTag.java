@@ -19,25 +19,23 @@ public class RFIDTag {
     }
     
     // constructor
-	public RFIDTag(String TagID, String name, boolean threeG, boolean bT, boolean wiFi, boolean volume, boolean vibrate){
-        this.threeG = threeG;
-        this.bluetooth = bT;
-        this.wifi = wiFi;
-        this.volume = volume;
-        this.vibrate = vibrate;
-        this.name = name;
-        this.tagID = TagID;
+	public RFIDTag(String tagid, String name, boolean threeG, boolean bluetooth, boolean wifi, boolean volume, boolean vibrate){
+        this.setValues(tagid, name, threeG, bluetooth, wifi, volume, vibrate);
     }
 	
-	public RFIDTag(String TagID, String name, Integer threeG, Integer bluetooth, Integer wifi, Integer volume, Integer vibrate){
-        this.threeG = this.ConverIntegerBoolean(threeG);
-        this.bluetooth = this.ConverIntegerBoolean(bluetooth);
-        this.wifi = this.ConverIntegerBoolean(wifi);
-        this.volume = this.ConverIntegerBoolean(volume);
-        this.vibrate = this.ConverIntegerBoolean(vibrate);
-        this.name = name;
-        this.tagID = TagID;
+	public RFIDTag(String tagid, String name, Integer threeG, Integer bluetooth, Integer wifi, Integer volume, Integer vibrate){
+		this.setValues(tagid, name, threeG, bluetooth, wifi, volume, vibrate);
     }
+	
+	public void setValues(String tagid, String name, Object threeG, Object bluetooth, Object wifi, Object volume, Object vibrate){
+		this.setTagID(tagid);
+		this.setName(name);
+		this.set3g(threeG);
+		this.setBluetooth(bluetooth);
+		this.setWifi(wifi);
+		this.setVolume(volume);
+		this.setVibrate(vibrate);
+	}
     
     /*
      * Get methods return INTEGER

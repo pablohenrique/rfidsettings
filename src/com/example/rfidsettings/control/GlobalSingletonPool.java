@@ -67,6 +67,10 @@ public class GlobalSingletonPool {
 		return (RFIDTag)this.getObject("activetag");
 	}
 	
+	public void deleteObject(String key){
+		this.objectPool.remove(key);
+	}
+	
 	/*
 	 * PRIVATE methods
 	 */
