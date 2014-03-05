@@ -7,6 +7,7 @@ import android.nfc.Tag;
 import java.util.HashMap;
 
 import com.example.rfidsettings.dao.RFIDTagDAO;
+import com.example.rfidsettings.model.RFIDTag;
 
 @SuppressLint("DefaultLocale")
 public class GlobalSingletonPool {
@@ -60,6 +61,10 @@ public class GlobalSingletonPool {
 	
 	public RFIDTagDAO getRFIDTagDAO(){
 		return (RFIDTagDAO)this.getObject("rfidtagdao");
+	}
+	
+	public RFIDTag getActiveTag(){
+		return (RFIDTag)this.getObject("activetag");
 	}
 	
 	/*

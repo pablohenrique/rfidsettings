@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 import com.example.rfidsettings.control.GlobalSingletonPool;
 import com.example.rfidsettings.model.RFIDTag;
 
 public class MainActivity extends Activity {
 	static String TAG = "NFCREADER";
+	Button editButton = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -23,13 +26,13 @@ public class MainActivity extends Activity {
 	    // 0 -> TRUE
 	    // 1 -> FALSE
 	    // String TagID, String name, Integer threeG, Integer bluetooth, Integer wifi, Integer volume, Integer vibrate
-	    //GlobalSingletonPool.getInstance().getRFIDTagDAO().insert(new RFIDTag("-45-5615-79", "CardA", 0, 1, 0, 0, 1)); //home
-	    //GlobalSingletonPool.getInstance().getRFIDTagDAO().insert(new RFIDTag("-9370-47-100", "CardB", 0, 1, 1, 0, 1));
-	    //GlobalSingletonPool.getInstance().getRFIDTagDAO().insert(new RFIDTag("-92-128850", "StickerA", 0, 0, 0, 0, 1));
+	    GlobalSingletonPool.getInstance().getRFIDTagDAO().insert(new RFIDTag("-45-5615-79", "CardA", 0, 1, 0, 0, 1)); //home
 	    //GlobalSingletonPool.getInstance().getRFIDTagDAO().insert(new RFIDTag("-10761850", "StickerB", 0, 1, 1, 1, 0)); //office
 	    
 	    setContentView(R.layout.activity_main);
-	    //info = (TextView)findViewById(R.id.action_settings);
+	    
+	    if(this.editButton == null)
+	    	this.addButtonListener();
 	}
 	
 	public void onStart(){
@@ -62,6 +65,8 @@ public class MainActivity extends Activity {
 	    if(tag == null){
 			GlobalSingletonPool.getInstance().setObject("activetag", new RFIDTag(sb.toString()));
 			System.out.println("Open magic window to register this tag");
+			Intent intent2 = new Intent(MainActivity.this, EditActivity.class);
+		    startActivity(intent2);
 	    }else{
 	    	GlobalSingletonPool.getInstance().setObject("activetag", tag);
 		    this.activateTag(tag);
@@ -87,4 +92,22 @@ public class MainActivity extends Activity {
 	        startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
 	    }
 	}
+	
+	///*
+	private void addButtonListener(){
+		System.out.println("beginning");
+		this.editButton = (Button)this.findViewById(R.id.buttonEdit);
+	    this.editButton.setOnClickListener(new Button.OnClickListener()
+            {
+            public void onClick(View v)
+                {
+                    Intent intent = new Intent(MainActivity.this,EditActivity.class);
+                    startActivity(intent);
+                }
+            }
+        );
+	    System.out.println("ending");
+	}
+	//*/
+	
 }

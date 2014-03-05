@@ -23,43 +23,39 @@
         android:background="@drawable/circle" />
  	 -->
 
-    <EditText
-        android:id="@+id/editText1"
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:text="ads should be here" >
-
-        <requestFocus />
-    </EditText>
+        android:text="Ads should be placed here" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/buttonEdit"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/editText1"
+        android:layout_above="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:text="@string/edit" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_above="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
+        android:layout_above="@+id/buttonEdit"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="46dp"
+        android:layout_marginBottom="88dp"
         android:text="@string/taptoread"
-        android:textSize="30sp" />
-
-    <ProgressBar
-        android:id="@+id/progressBar1"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_above="@+id/textView2"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_marginBottom="20dp" />
+        android:textSize="24sp" />
  	 
 </RelativeLayout>

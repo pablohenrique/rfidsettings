@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+
+    <ToggleButton
+        android:id="@+id/toggleButtonWifi"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="74dp"
+        android:text="@string/toggle"
+        android:textOff="Wifi Off"
+        android:textOn="Wifi On" />
+
+    <ToggleButton
+        android:id="@+id/toggleButtonVolume"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toggleButtonWifi"
+        android:layout_centerHorizontal="true"
+        android:text="@string/toggle"
+        android:textOff="Volume Off"
+        android:textOn="Volume On" />
+
+    <ToggleButton
+        android:id="@+id/toggleButtonBluetooth"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toggleButtonVolume"
+        android:layout_centerHorizontal="true"
+        android:text="@string/toggle"
+        android:textOff="Bluetooth Off"
+        android:textOn="Bluetooth On" />
+
+    <ToggleButton
+        android:id="@+id/toggleButtonVibrate"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toggleButtonBluetooth"
+        android:layout_centerHorizontal="true"
+        android:text="@string/toggle"
+        android:textOff="Vibrate Off"
+        android:textOn="Vibrate On" />
+
+    <ToggleButton
+        android:id="@+id/toggleButtonMaps"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toggleButtonVibrate"
+        android:layout_centerHorizontal="true"
+        android:text="@string/toggle"
+        android:textOff="Maps Off"
+        android:textOn="Maps On" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/toggleButtonWifi"
+        android:ems="10"
+        android:text="Give this tag a name" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Ads should be placed here" />
+
+</RelativeLayout>

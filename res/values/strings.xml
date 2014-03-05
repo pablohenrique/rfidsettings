@@ -9,20 +9,19 @@
     <string name="changed">Settings Changed. </string>
     <string name="tagname">Name </string>
     <string name="wifi">Wifi </string>
-    <string name="chkwifi"> </string>
+    <string name="chkwifi"></string>
     <string name="gg">3G </string>
     <string name="chk3g"></string>
     <string name="vib">Vibrate </string>
-    <string name="chkVib"> </string>
+    <string name="chkVib"></string>
     <string name="volume">Volume </string>
-    <string name="chkVolume"> </string>
+    <string name="chkVolume"></string>
     <string name="bluetooth">Bluetooth </string>
-    <string name="chkBlueTooth"> </string>
+    <string name="chkBlueTooth"></string>
     <string name="btnGravar">Add </string>
     <string name="Textdefault">Insert a name</string>
     <string name="edit">Edit</string>
     <string name="toggle">ToggleButton</string>
-    
-    
+    <string name="title_activity_edit">EditActivity</string>
 
 </resources>

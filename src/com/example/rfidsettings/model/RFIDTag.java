@@ -3,8 +3,8 @@ package com.example.rfidsettings.model;
 public class RFIDTag {
 
 	//private variables
-	String tagID;
-	String name;
+	String tagID = null;
+	String name = null;
     boolean threeG;
     boolean bluetooth;
     boolean wifi;
