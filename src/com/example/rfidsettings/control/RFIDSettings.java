@@ -1,6 +1,5 @@
 package com.example.rfidsettings.control;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import com.example.rfidsettings.model.RFIDTag;
